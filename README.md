@@ -1,4 +1,4 @@
-![DESARROLLO DE APLICACIONES CON JAVA](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-PROG-JAVA-2022-2/main/img/portada.png)
+![DESARROLLO WEB CON JAVA](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-JAVA-WEB-002/main/Imagenes/portada.png)
 
 ![CALENDARIO](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-PROG-JAVA-2022-2/main/Calendario.png)
 
@@ -19,10 +19,6 @@
 - Facebook 1: https://www.facebook.com/groups/universidadjava
 - Facebook 2: https://www.facebook.com/groups/desarrollasoftware
 - Facebook 3: https://www.facebook.com/groups/bolsa.sistemas
-
-#RECURSOS UTILES
-
-- Entorno de trabajo: http://gcoronelc.blogspot.com/p/java.html
 
 
 # YUTUBE
