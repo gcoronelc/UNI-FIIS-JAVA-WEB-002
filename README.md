@@ -1,6 +1,6 @@
 ![DESARROLLO WEB CON JAVA](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-JAVA-WEB-002/main/Imagenes/portada.png)
 
-![CALENDARIO](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-PROG-JAVA-2022-2/main/Calendario.png)
+![CALENDARIO](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-JAVA-WEB-002/main/Imagenes/Calendario.png)
 
 # DATOS GENERALES
 
