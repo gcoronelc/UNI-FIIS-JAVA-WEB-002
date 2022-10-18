@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; utf-8">
+<title>EJEMPLO 2</title>
+</head>
+<body>
+	<div class="container">
+		<h1>OPERACIONES BASICAS</h1>
+		<form method="post" id="form1" action="Procesar1">
+			<div class="row mb-3">
+				<label for="numero1" class="col-sm-2 col-form-label">Número
+					1</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="numero1"
+						id="numero1">
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="numero2" class="col-sm-2 col-form-label">Número
+					2</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="numero2"
+						id="numero2">
+				</div>
+			</div>
+			<button type="button" id="btnProcesar" class="btn btn-primary">Procesar</button>
+		</form>
+	</div>
+	<div class="container" id="divResultado" style="display: none;">
+		<h1>RESULTADO</h1>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-form-label">Número 1</label>
+			<div class="col-sm-10" id="divNumero1"></div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-form-label">Número 2</label>
+			<div class="col-sm-10"id="divNumero2"></div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-form-label">Suma</label>
+			<div class="col-sm-10" id="divSuma"></div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 col-form-label">Producto</label>
+			<div class="col-sm-10" id="divProducto"></div>
+		</div>
+
+
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#btnProcesar").click(function() {
+				let data = $("#form1").serialize();
+				$.post("Procesar2", data, function(objJson) {
+					$("#divNumero1").html(objJson.numero1);
+					$("#divNumero2").html(objJson.numero2);
+					$("#divSuma").html(objJson.suma);
+					$("#divProducto").html(objJson.producto);
+					$("#divResultado").show();
+				});
+			});
+		});
+	</script>
+</body>
+</html>

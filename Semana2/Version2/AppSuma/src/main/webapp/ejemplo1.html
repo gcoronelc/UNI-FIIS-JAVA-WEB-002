@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; utf-8">
+<title>EJEMPLO 1</title>
+</head>
+<body>
+	<div class="container">
+		<h1>OPERACIONES BASICAS</h1>
+		<form method="post" id="form1" action="Procesar1">
+			<div class="row mb-3">
+				<label for="numero1" class="col-sm-2 col-form-label">Número
+					1</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="numero1"
+						id="numero1">
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="numero2" class="col-sm-2 col-form-label">Número
+					2</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="numero2"
+						id="numero2">
+				</div>
+			</div>
+			<button type="button" id="btnProcesar" class="btn btn-primary">Procesar</button>
+		</form>
+	</div>
+	<div class="container" id="divResultado"></div>
+	<script type="text/javascript">
+		$(function() {
+			$("#btnProcesar").click(function(){
+				let data = $("#form1").serialize();
+				$.post("Procesar1",data,function(respuesta){
+					$("#divResultado").html(respuesta);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
