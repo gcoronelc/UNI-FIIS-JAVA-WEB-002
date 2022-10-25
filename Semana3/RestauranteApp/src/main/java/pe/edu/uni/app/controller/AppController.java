@@ -50,6 +50,9 @@ public class AppController extends HttpServlet {
 		RestauranteService service = new RestauranteService();
 		double precio = switch(categoria){
 			case 1 -> service.precioHospedaje(item);
+			case 2 -> service.precioDesayuno(item);
+			case 3 -> service.precioAlmuerzo(item);
+			case 4 -> service.precioCena(item);
 			default -> 0.0; 
 		};
 		// Reporte

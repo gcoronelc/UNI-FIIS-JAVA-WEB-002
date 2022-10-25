@@ -25,6 +25,7 @@
 
 
 		<c:if test="${control==1}">
+		
 			<div class="card">
 				<div class="card-header">Ingreso de datos</div>
 				<div class="card-body">
@@ -66,6 +67,7 @@
 										<option value="${r.id}">${r.nombre}</option>
 									</c:forEach>
 								</select>
+								<div id="detalleDesayuno">0.0</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -77,6 +79,7 @@
 										<option value="${r.id}">${r.nombre}</option>
 									</c:forEach>
 								</select>
+								<div id="detalleAlmuerzo">0.0</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -88,6 +91,7 @@
 										<option value="${r.id}">${r.nombre}</option>
 									</c:forEach>
 								</select>
+								<div id="detalleCena">0.0</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -96,6 +100,7 @@
 					</form>
 				</div>
 			</div>
+			
 		</c:if>
 
 		<c:if test="${control==2}">
@@ -148,6 +153,8 @@
 		</c:if>
 
 	</div>
+	
+	
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
 		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 		crossorigin="anonymous"></script>
@@ -158,6 +165,9 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#hospedaje").change(fnCargaPrecioHospedaje);
+			$("#desayuno").change(fnCargaPrecioDesayuno);
+			$("#almuerzo").change(fnCargaPrecioAlmuerzo);
+			$("#cena").change(fnCargaPrecioCena);
 		});
 
 		function fnCargaPrecioHospedaje() {
@@ -170,6 +180,47 @@
 			let data = "categoria=1&item=" + hospedaje;
 			$.get(url, data, function(texto) {
 				$("#detalleHospedaje").html(texto);
+			});
+		}
+		
+		function fnCargaPrecioDesayuno() {
+			let desayuno = $("#desayuno").val();
+			if (desayuno == 0) {
+				$("#detalleDesayuno").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=2&item=" + desayuno;
+			$.get(url, data, function(texto) {
+				$("#detalleDesayuno").html(texto);
+			});
+		}
+		
+
+		function fnCargaPrecioAlmuerzo() {
+			let almuerzo = $("#almuerzo").val();
+			if (almuerzo == 0) {
+				$("#detalleAlmuerzo").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=3&item=" + almuerzo;
+			$.get(url, data, function(texto) {
+				$("#detalleAlmuerzo").html(texto);
+			});
+		}
+		
+
+		function fnCargaPrecioCena() {
+			let cena = $("#cena").val();
+			if (cena == 0) {
+				$("#detalleCena").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=4&item=" + cena;
+			$.get(url, data, function(texto) {
+				$("#detalleCena").html(texto);
 			});
 		}
 	</script>

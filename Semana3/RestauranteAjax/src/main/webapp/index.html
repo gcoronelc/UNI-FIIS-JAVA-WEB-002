@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<title>HOTEL TURISTICO "EL CIELO DEL AMOR"</title>
+</head>
+<body>
+	<nav class="navbar sticky-top navbar-dark bg-primary">
+		<a class="navbar-brand" href="#!">HOTEL TUTISTICO "EL CIELO DEL
+			AMOR"</a>
+	</nav>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Ingreso de datos</div>
+			<div class="card-body">
+				<form method="post" action="Procesar">
+					<div class="form-group row">
+						<label for="personas" class="col-sm-2 col-form-label">Cantidad
+							personas:</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" id="personas"
+								name="personas" placeholder="Cantidad de personas">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="dias" class="col-sm-2 col-form-label">Cantidad
+							Dias:</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" id="dias" name="dias"
+								placeholder="Cantidad días">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="dias" class="col-sm-2 col-form-label">Tipo de
+							hospaje:</label>
+						<div class="col-sm-10">
+							<select class="custom-select" id="hospedaje" name="hospedaje">
+								<option value="0">Seleccionar</option>
+							</select>
+							<div id="detalleHospedaje">0.0</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="desayuno" class="col-sm-2 col-form-label">Tipo
+							de desayuno:</label>
+						<div class="col-sm-10">
+							<select class="custom-select" id="desayuno" name="desayuno">
+								<option value="0">Seleccionar</option>
+							</select>
+							<div id="detalleDesayuno">0.0</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="almuerzo" class="col-sm-2 col-form-label">Tipo
+							de almuerzo:</label>
+						<div class="col-sm-10">
+							<select class="custom-select" id="almuerzo" name="almuerzo">
+								<option value="0">Seleccionar</option>
+							</select>
+							<div id="detalleAlmuerzo">0.0</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="cena" class="col-sm-2 col-form-label">Tipo de
+							cena:</label>
+						<div class="col-sm-10">
+							<select class="custom-select" id="cena" name="cena">
+								<option value="0">Seleccionar</option>
+							</select>
+							<div id="detalleCena">0.0</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Procesar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			cargarCombos();
+			$("#hospedaje").change(fnCargaPrecioHospedaje);
+			$("#desayuno").change(fnCargaPrecioDesayuno);
+			$("#almuerzo").change(fnCargaPrecioAlmuerzo);
+			$("#cena").change(fnCargaPrecioCena);
+		});
+
+		function cargarCombos() {
+			$.get("traerCombos", function(objCombos) {
+				llenarCombo("hospedaje", objCombos.hospedaje);
+				llenarCombo("desayuno", objCombos.desayuno);
+				llenarCombo("almuerzo", objCombos.almuerzo);
+				llenarCombo("cena", objCombos.cena);
+			});
+		}
+
+		function llenarCombo(control, arreglo) {
+			control = "#" + control;
+			$(control).empty();
+			$(arreglo).each(function() {
+				let option = $(document.createElement('option'));
+				option.text(this.nombre);
+				option.val(this.id);
+				$(control).append(option);
+			});
+		}
+		
+		function fnCargaPrecioHospedaje() {
+			let hospedaje = $("#hospedaje").val();
+			if (hospedaje == 0) {
+				$("#detalleHospedaje").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=1&item=" + hospedaje;
+			$.get(url, data, function(texto) {
+				$("#detalleHospedaje").html(texto);
+			});
+		}
+
+		function fnCargaPrecioDesayuno() {
+			let desayuno = $("#desayuno").val();
+			if (desayuno == 0) {
+				$("#detalleDesayuno").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=2&item=" + desayuno;
+			$.get(url, data, function(texto) {
+				$("#detalleDesayuno").html(texto);
+			});
+		}
+
+		function fnCargaPrecioAlmuerzo() {
+			let almuerzo = $("#almuerzo").val();
+			if (almuerzo == 0) {
+				$("#detalleAlmuerzo").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=3&item=" + almuerzo;
+			$.get(url, data, function(texto) {
+				$("#detalleAlmuerzo").html(texto);
+			});
+		}
+
+		function fnCargaPrecioCena() {
+			let cena = $("#cena").val();
+			if (cena == 0) {
+				$("#detalleCena").html("Seleccione un valor correcto.");
+				return;
+			}
+			let url = "traerPrecio";
+			let data = "categoria=4&item=" + cena;
+			$.get(url, data, function(texto) {
+				$("#detalleCena").html(texto);
+			});
+		}
+	</script>
+
+</body>
+</html>
