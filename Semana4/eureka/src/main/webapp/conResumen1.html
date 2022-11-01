@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CONSULTA RESUMEN 1</title>
+</head>
+<body>
+
+	<h1>CONSULTA RESUMEN DE INGRESOS Y SALIDAS POR SUCURSAL</h1>
+	<div class="card">
+		<div class="card-header">Datos de la consulta</div>
+		<div class="card-body">
+			<form method="post" action="Procesar">
+				<div class="form-group row">
+					<div class="col-sm-4">
+						<label for="personas" class="col-form-label">Cantidad
+							de días:</label>
+					</div>
+
+					<div class="col-sm-4">
+						<input type="number" class="form-control" id="personas"
+							name="personas" placeholder="Cantidad de personas">
+					</div>
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Procesar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

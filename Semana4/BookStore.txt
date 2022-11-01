@@ -1,0 +1,23 @@
+CASO 1
+=============================
+Precio: 100
+Cantidad: 8
+Porc.Dcto.: 5%
+---------------------
+Dcto: 40.0
+Subtotal: 644.07
+Impuesto: 115.93
+Total: 760.0
+
+CASO 2
+=============================
+Precio: 35.0
+Cantidad: 8
+Porc.Dcto.: 5%
+---------------------
+Dcto: 14.0
+Subtotal: 225.42
+Impuesto: 40.58
+Total: 266.0
+
+
