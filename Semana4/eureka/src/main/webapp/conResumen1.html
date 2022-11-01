@@ -6,27 +6,90 @@
 </head>
 <body>
 
-	<h1>CONSULTA RESUMEN DE INGRESOS Y SALIDAS POR SUCURSAL</h1>
-	<div class="card">
+	<h1>RESUMEN DE INGRESOS Y SALIDAS POR SUCURSAL</h1>
+
+	<div class="card" id="divFormulario">
 		<div class="card-header">Datos de la consulta</div>
 		<div class="card-body">
-			<form method="post" action="Procesar">
+			<form id="formDatos">
 				<div class="form-group row">
 					<div class="col-sm-4">
-						<label for="personas" class="col-form-label">Cantidad
-							de días:</label>
+						<label for="dias" class="col-form-label">Cantidad de días:</label>
 					</div>
-
-					<div class="col-sm-4">
-						<input type="number" class="form-control" id="personas"
-							name="personas" placeholder="Cantidad de personas">
+					<div class="col-sm-4 input-group-lg
+					">
+						<input type="number" class="form-control" id="dias" name="dias"
+							placeholder="Cantidad de dias">
 					</div>
 					<div class="col-sm-4">
-						<button type="submit" class="btn btn-primary btn-lg btn-block">Procesar</button>
+						<button id="btnConsultar" type="button"
+							class="btn btn-primary btn-lg btn-block">Consultar</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<div class="card" style="display: none;" id="divReporte">
+		<div class="card-header" id="reporteTitulo">Reporte ...</div>
+		<div class="card-body">
+			<div>
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th>SUCURSAL</th>
+							<th>INGRESO</th>
+							<th>SALIDA</th>
+						</tr>
+					</thead>
+					<tbody id="reporteDetalle">
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<div class="col-sm-4">
+					<button id="btnFormulario" type="button"
+						class="btn btn-primary btn-lg btn-block">Retornar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#btnConsultar").click(fnBtnConsultar);
+			$("#btnFormulario").click(fnBtnFormulario);
+		});
+
+		function fnBtnConsultar() {
+			let dias = $("#dias").val();
+			let data = "dias=" + dias;
+			let url = "ConResumen1";
+			$.post(url, data, function(lista) {
+				let reporteData = "";
+				$.each(lista, function(index, obj) {
+					reporteData += "<tr>";
+					reporteData += "<td>" + obj.SUCURSAL + "</td>";					
+					reporteData += "<td>" + obj.INGRESO + "</td>";					
+					reporteData += "<td>" + obj.SALIDA + "</td>";					
+					reporteData += "</tr>";
+				});
+				$("#reporteTitulo").html("Reporte de los ultimo " + dias + " dias.");
+				$("#reporteDetalle").html(reporteData);
+				$("#divFormulario").hide();
+				$("#divReporte").show();
+			});
+		}
+
+		function fnBtnFormulario() {
+			$("#divFormulario").show();
+			$("#divReporte").hide();
+		}
+	</script>
 </body>
 </html>
