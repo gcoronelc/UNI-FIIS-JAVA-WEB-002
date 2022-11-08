@@ -24,7 +24,7 @@ public class ConsultaController extends HttpServlet {
 		String path = request.getServletPath();
 		switch (path) {
 		case "/ConResumen1":
-			getConResumen1(request, response);
+			postConResumen1(request, response);
 			break;
 
 		default:
@@ -32,7 +32,7 @@ public class ConsultaController extends HttpServlet {
 		}
 	}
 
-	private void getConResumen1(HttpServletRequest request, HttpServletResponse response) 
+	private void postConResumen1(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
 		// Parametro
 		int dias = Integer.parseInt(request.getParameter("dias"));
