@@ -7,54 +7,63 @@
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
 <title>EUREKA BANK</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #17a2b8;
+	height: 100vh;
+}
+
+#login .container #login-row #login-column #login-box {
+	margin-top: 120px;
+	max-width: 600px;
+	height: 320px;
+	border: 1px solid #9C9C9C;
+	background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+	padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link
+	{
+	margin-top: -85px;
+}
+</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-info">
-		<a class="navbar-brand" href="#">EurekaBanl</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li>
 
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Procesos </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="javascript:fnProcesoDeposito();">Registrar deposito</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Consultas </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="javascript:fnCargarResumen1();">Resumen
-							de ingresos y salidas</a> <a class="dropdown-item" href="#">Another
-							action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-
-				<li class="nav-item"><a class="nav-link" href="#">Salir</a></li>
-			</ul>
+	<div id="login">
+		<h3 class="text-center text-white pt-5">EUREKABANK</h3>
+		<div class="container">
+			<div id="login-row"
+				class="row justify-content-center align-items-center">
+				<div id="login-column" class="col-md-6">
+					<div id="login-box" class="col-md-12">
+						<form id="login-form" class="form" action="" method="post">
+							<h3 class="text-center text-info">Ingreso al Sistema</h3>
+							<div class="form-group">
+								<label for="username" class="text-info">Usuario:</label><br>
+								<input type="text" name="username" id="username"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="password" class="text-info">Clave:</label><br>
+								<input type="password" name="password" id="password"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<input type="button" name="btnSubmit" id="btnSubmit" class="btn btn-info btn-md"
+									value="Ingresar al sistema">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-	</nav>
-
-	<div class="container" id="divWork">Aquí se mostraran las
-		paginas.</div>
-
-
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
 		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -66,18 +75,19 @@
 
 	<script type="text/javascript">
 		$(function() {
-			// Hola
-			//Console.log("");
+			$("#btnSubmit").click(fnBtnSubmit);
 		});
-
-		function fnProcesoDeposito(){
-			$("#divWork").load("procDeposito.html");
+		function fnBtnSubmit(){
+			let url = location.href;
+			let data = $("#login-form").serialize();
+			$.post("logon",data,function(msg){
+				if(msg.estado==1){
+					location.href = "main.html";
+				} else {
+					alert(msg.mensaje);
+				}
+			});
 		}
-		
-		function fnCargarResumen1() {
-			$("#divWork").load("conResumen1.html");
-		}
-		
 	</script>
 </body>
 </html>

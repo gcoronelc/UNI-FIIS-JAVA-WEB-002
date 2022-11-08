@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.desarrollasoftware.eureka.model.Mensaje;
 import com.desarrollasoftware.eureka.service.CuentaService;
@@ -45,9 +46,12 @@ public class CuentaController extends HttpServlet {
 			// Datos
 			String cuenta = request.getParameter("cuenta");
 			double importe = Double.parseDouble(request.getParameter("importe"));
+			// El usuario
+			HttpSession session = request.getSession(true);
+			String usuario = session.getAttribute("usuario").toString();
 			// Proceso
 			CuentaService service = new CuentaService();
-			service.procDeposito(cuenta, importe, "0002");
+			service.procDeposito(cuenta, importe, usuario);
 			msg.setEstado(1);
 			msg.setMensaje("Proceso ejecutado correctamente");
 		} catch (Exception e) {

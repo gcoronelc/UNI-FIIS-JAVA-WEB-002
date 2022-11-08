@@ -3,7 +3,7 @@
 Reporte de depositos y retiros por sucursal de los ultimos 7 dias.
 */
 
-alter procedure usp_resumen_operaciones
+create procedure usp_resumen_operaciones
 ( @dias int )
 as
 begin

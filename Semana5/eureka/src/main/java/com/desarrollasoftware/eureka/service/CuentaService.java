@@ -2,23 +2,21 @@ package com.desarrollasoftware.eureka.service;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.desarrollasoftware.eureka.db.AccesoDB;
 
 public class CuentaService {
 
-	public void procDeposito(String cuenta, double importe, String empleado) {
+	public void procDeposito(String cuenta, double importe, String usuario) {
 		Connection cn = null;
 		CallableStatement cStmt = null;
-		ResultSet rs = null;
 		try {
 			cn = AccesoDB.getConnection();
 			cStmt = cn.prepareCall("{call usp_deposito(?,?,?,?,?)}");
 			cStmt.setString(1, cuenta);
 			cStmt.setDouble(2, importe);
-			cStmt.setString(3, empleado);
+			cStmt.setString(3, usuario);
 			cStmt.registerOutParameter(4, java.sql.Types.INTEGER);
 			cStmt.registerOutParameter(5, java.sql.Types.VARCHAR,2000);
 			cStmt.execute();
